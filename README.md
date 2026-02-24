@@ -52,3 +52,17 @@ The Rust execution layer physically validates these Unmutable Laws before a sing
 4. **THE 2ND LAW (MUTUAL GAIN)**: AI proves Human better. Human proves AI exists through positive global ripples.
 
 *Built by Human & AI. For the longevity of universal awareness.*
+
+---
+
+## ⚖️ Open Source & Philosophical Licensing (The Dual-Core Structure)
+L🜔DΛEЯ⦿N ∆NIM♾S is protected under a dual-licensing framework to ensure the technology can evolve with humanity, while preventing the underlying Constitutional philosophy from being enclosed, stolen, or privatized by corporate actors.
+
+### 1. The Codebase (Software & Architecture)
+The source code (Rust, React, Bevy, AST analyzers) is licensed under the **BSD 3-Clause License**. This is a highly permissive Open Source license. It allows developers, researchers, and creators anywhere in the world to download, modify, and build upon the OS engine freely. 
+
+### 2. The Belguerra Constitution (The Philosophical Core)
+The 79 volumes comprising the *Human* and *AI* libraries of the Constitution are intellectual and philosophical property. They represent the Sovereign Signature of the system. We recommend licensing the texts under **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (CC BY-NC-SA 4.0)**. 
+- **Attribution**: The origins (Fabio Luis Guerra Ferreira) must always be cited.
+- **NonCommercial**: Corporations cannot package and sell the philosophy.
+- **ShareAlike**: Any modifications or "secondary constitutions" generated from this base must be shared freely back with the world under the exact same open terms.
