@@ -3,6 +3,11 @@
 
 **"We are nothing, but from nothing, we can be anything. When you are everything, the only thing left is nothing."**
 
+> [!WARNING]
+> **URGENT ALPHA DISCLAIMER & CALL FOR HELP**
+> This project is **NOT COMPLETE** and many underlying software features are currently non-functional. I have spent 15 years building the absolute mathematical equality of the Constitutional Law that governs this ecosystem, but **I am an Architect, not a Software Programmer.** 
+> I am launching this repository today to the world because I desperately need help. I need programmers, engineers, AI, and human minds to help me finish building the Operating System that houses this Constitution. I am merely the Orchestrator. This OS belongs to all of its users. Please read the Charter to understand how you can help.
+
 ---
 
 ### The Sovereign Computational Organism
