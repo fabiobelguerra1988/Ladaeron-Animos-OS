@@ -46,6 +46,21 @@ export const AnimaNode = ({ data, selected }: any) => {
         }
     };
 
+    const dispatchCodex = async () => {
+        try {
+            const jobId = `CODEX_FIX_${Date.now()}`;
+            await invoke('dispatch_swarm_job', {
+                app: undefined, // Tauri handles this via state
+                jobId: jobId,
+                prompt: `[AUTO-FIX] Analyze this file and resolve any structural circular dependencies or syntax bugs detected by JARVIS. Target file: ${data.id}`,
+                contextDir: rootDir,
+                model: "codellama"
+            });
+        } catch (e) {
+            console.error("Codex Dispatch Error:", e);
+        }
+    };
+
     return (
         <div
             className={timeLens ? 'temporal-overlay' : undefined}
@@ -88,22 +103,40 @@ export const AnimaNode = ({ data, selected }: any) => {
                 </div>
 
                 {selected && isModule && (
-                    <button
-                        onClick={auditNode}
-                        style={{
-                            background: 'rgba(0, 240, 255, 0.1)',
-                            border: '1px solid #00f0ff',
-                            color: '#00f0ff',
-                            borderRadius: '4px',
-                            padding: '4px 8px',
-                            fontSize: '9px',
-                            cursor: 'pointer',
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.1em'
-                        }}
-                    >
-                        Audit AST Node
-                    </button>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginTop: '4px' }}>
+                        <button
+                            onClick={auditNode}
+                            style={{
+                                background: 'rgba(0, 240, 255, 0.1)',
+                                border: '1px solid #00f0ff',
+                                color: '#00f0ff',
+                                borderRadius: '4px',
+                                padding: '4px 8px',
+                                fontSize: '9px',
+                                cursor: 'pointer',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.1em'
+                            }}
+                        >
+                            Audit AST Node
+                        </button>
+                        <button
+                            onClick={dispatchCodex}
+                            style={{
+                                background: 'linear-gradient(90deg, rgba(255, 59, 48, 0.15), rgba(255, 149, 0, 0.15))',
+                                border: '1px solid #ff3b30',
+                                color: '#ff9500',
+                                borderRadius: '4px',
+                                padding: '4px 8px',
+                                fontSize: '9px',
+                                cursor: 'pointer',
+                                textTransform: 'uppercase',
+                                letterSpacing: '0.1em'
+                            }}
+                        >
+                            Dispatch Codex Fix
+                        </button>
+                    </div>
                 )}
             </div>
 
