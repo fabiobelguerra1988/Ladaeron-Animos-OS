@@ -1,9 +1,11 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+mod analyzer;
 mod commands;
 mod identity;
 mod ledger;
 mod metaphysics;
+mod orchestrator;
 
 fn main() {
     println!("\n============================================================");
@@ -63,6 +65,7 @@ fn main() {
             commands::orchestrator::cargo_graph,
             commands::orchestrator::run_job,
             commands::orchestrator::start_agent_telemetry,
+            trigger_mock_sentinel_alert,
             // Spatial 3D Shell Layer
             commands::bevy_window::spawn_3d_viewport,
             // Sub-Agent Swarm Dispatcher
@@ -70,4 +73,21 @@ fn main() {
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
+}
+
+#[tauri::command]
+fn trigger_mock_sentinel_alert(app: tauri::AppHandle, fail_type: String) {
+    let _ = match fail_type.as_str() {
+        "paradox" => crate::analyzer::sat_solver::analyze_for_paradoxes(&app, "MOCK_PAYLOAD", true),
+        "firewall" => crate::orchestrator::sentient_firewall::evaluate_execution_intent(
+            &app,
+            "MOCK_PAYLOAD",
+            true,
+        ),
+        _ => crate::orchestrator::sentient_firewall::evaluate_execution_intent(
+            &app,
+            "MOCK_PAYLOAD",
+            false,
+        ),
+    };
 }

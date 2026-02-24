@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useAppStore } from '../store/useAppStore';
+import { listen } from '@tauri-apps/api/event';
+import { invoke } from '@tauri-apps/api/core';
+
+export interface SentinelAlertPayload {
+  level: string;
+  component: string;
+  message: string;
+  timestamp: string;
+}
 
 function MetricRing({ label, value, color, delay }: { label: string; value: number; color: string; delay: number }) {
   const [fill, setFill] = useState(0);
@@ -38,6 +47,21 @@ export function DashboardTab() {
   const rootDir = useAppStore((s) => s.rootDir);
   const runState = useAppStore((s) => s.runState);
 
+  const [auditLogs, setAuditLogs] = useState<SentinelAlertPayload[]>([]);
+
+  useEffect(() => {
+    const unlisten = listen<SentinelAlertPayload>('sentinel-alert', (event) => {
+      setAuditLogs(prev => [event.payload, ...prev].slice(0, 10)); // Keep last 10
+    });
+    return () => {
+      unlisten.then(f => f());
+    };
+  }, []);
+
+  const triggerTest = (type: string) => {
+    invoke('trigger_mock_sentinel_alert', { failType: type }).catch(console.error);
+  };
+
   // Mocking the backend Rust Analytics for the Dashboard V1
   const hpiScore = 94.2;
   const tsiScore = 88.7;
@@ -74,20 +98,25 @@ export function DashboardTab() {
         </article>
 
         <article className="dashboard-card citizen-audit-card">
-          <div className="dashboard-card-title" style={{ color: '#ff4d4d' }}>Citizen Audit Protocol (Sentinel)</div>
+          <div className="dashboard-card-title" style={{ color: '#ff4d4d', display: 'flex', justifyContent: 'space-between' }}>
+            <span>Citizen Audit Protocol (Sentinel)</span>
+            <div style={{ display: 'flex', gap: '5px' }}>
+              <button onClick={() => triggerTest('success')} style={{ fontSize: '9px', padding: '2px 5px', background: 'transparent', color: '#00ffcc', border: '1px solid #00ffcc', cursor: 'pointer' }}>TEST OK</button>
+              <button onClick={() => triggerTest('paradox')} style={{ fontSize: '9px', padding: '2px 5px', background: 'transparent', color: '#ff3366', border: '1px solid #ff3366', cursor: 'pointer' }}>TEST PARADOX</button>
+              <button onClick={() => triggerTest('firewall')} style={{ fontSize: '9px', padding: '2px 5px', background: '#ff3366', color: 'white', border: 'none', cursor: 'pointer' }}>TEST HHS</button>
+            </div>
+          </div>
           <div className="audit-log-container">
-            <div className="audit-entry success">
-              <span className="audit-time">10:04:12</span>
-              <span className="audit-msg">[SAT SOLVER] Payload Graph passed structural paradox resolution.</span>
-            </div>
-            <div className="audit-entry success">
-              <span className="audit-time">10:04:13</span>
-              <span className="audit-msg">[FIREWALL] Identity Hash matched. Consent verified.</span>
-            </div>
-            <div className="audit-entry block">
-              <span className="audit-time">10:04:22</span>
-              <span className="audit-msg">[ERROR] Axiom Contradiction. Node 3 attempted to delete Truth Anchor. Execution Dropped.</span>
-            </div>
+            {auditLogs.length === 0 ? (
+              <div style={{ color: 'rgba(255,255,255,0.2)', fontStyle: 'italic', padding: '10px 0' }}>Awaiting execution validations from Rust SAT logic...</div>
+            ) : (
+              auditLogs.map((log, idx) => (
+                <div key={idx} className={`audit-entry ${log.level === 'BLOCK' ? 'block' : 'success'}`}>
+                  <span className="audit-time">{log.timestamp}</span>
+                  <span className="audit-msg">{log.message}</span>
+                </div>
+              ))
+            )}
           </div>
           <div className="dashboard-subtle-line">
             *All executions are evaluated by the native Rust SAT Solver prior to payload compilation.
