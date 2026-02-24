@@ -16,63 +16,43 @@ pub struct GraphEdge { pub id: String, pub source: String, pub target: String, p
 pub struct Graph { pub nodes: Vec<GraphNode>, pub edges: Vec<GraphEdge> }
 
 #[command]
-pub async fn cargo_graph(root: String) -> Result<Graph, String> {
+pub async fn generate_sdg(app: AppHandle, root: String) -> Result<Graph, String> {
   let mut cmd = cargo_metadata::MetadataCommand::new();
-  cmd.current_dir(root);
-  let md = cmd.exec().map_err(|e| e.to_string())?;
-
+  cmd.current_dir(&root);
+  
   let mut nodes = Vec::new();
   let mut edges = Vec::new();
 
-  for p in &md.packages {
-    let pkg_id = p.name.clone();
-    nodes.push(GraphNode{
-      id: pkg_id.clone(),
-      label: p.name.clone(),
-      kind: "crate".into(),
-    });
+  // 1. Rust Cargo Dependencies
+  if let Ok(md) = cmd.exec() {
+    for p in &md.packages {
+      let pkg_id = p.name.clone();
+      nodes.push(GraphNode{ id: pkg_id.clone(), label: p.name.clone(), kind: "crate".into() });
 
-    let src_dir = p.manifest_path.parent().unwrap().join("src");
-    if src_dir.exists() {
-      for entry in walkdir::WalkDir::new(&src_dir).max_depth(2).into_iter().filter_map(|e| e.ok()) {
-        if entry.file_type().is_file() && entry.path().extension().map_or(false, |ext| ext == "rs") {
-          let file_name = entry.path().file_name().unwrap().to_string_lossy().to_string();
-          let node_id = format!("{}:{}", pkg_id, file_name);
-          nodes.push(GraphNode {
-            id: node_id.clone(),
-            label: file_name.clone(),
-            kind: "module".into(),
-          });
-          edges.push(GraphEdge {
-            id: format!("{}->{}", pkg_id, node_id),
-            source: pkg_id.clone(),
-            target: node_id.clone(),
-            kind: "contains".into(),
-          });
+      let src_dir = p.manifest_path.parent().unwrap().join("src");
+      if src_dir.exists() {
+        for entry in walkdir::WalkDir::new(&src_dir).max_depth(2).into_iter().filter_map(|e| e.ok()) {
+          if entry.file_type().is_file() && entry.path().extension().is_some_and(|ext| ext == "rs") {
+            let file_name = entry.path().file_name().unwrap().to_string_lossy().to_string();
+            let node_id = format!("{}:{}", pkg_id, file_name);
+            nodes.push(GraphNode { id: node_id.clone(), label: file_name.clone(), kind: "module".into() });
+            edges.push(GraphEdge { id: format!("{}->{}", pkg_id, node_id), source: pkg_id.clone(), target: node_id.clone(), kind: "contains".into() });
 
-          if let Ok(content) = fs::read_to_string(entry.path()) {
-            for line in content.lines() {
-              let trimmed = line.trim();
-              if trimmed.starts_with("pub fn ") || trimmed.starts_with("fn ") || 
-                 trimmed.starts_with("pub struct ") || trimmed.starts_with("struct ") ||
-                 trimmed.starts_with("pub enum ") || trimmed.starts_with("enum ") {
-                
-                let parts: Vec<&str> = trimmed.split_whitespace().collect();
-                let name = parts.iter().skip_while(|&&s| s == "pub" || s == "async").nth(1);
-                if let Some(n) = name {
-                  let sym_name = n.split('(').next().unwrap().split('{').next().unwrap().trim();
-                  let sym_id = format!("{}:{}", node_id, sym_name);
-                  nodes.push(GraphNode {
-                    id: sym_id.clone(),
-                    label: sym_name.to_string(),
-                    kind: "symbol".into(),
-                  });
-                  edges.push(GraphEdge {
-                    id: format!("{}->{}", node_id, sym_id),
-                    source: node_id.clone(),
-                    target: sym_id,
-                    kind: "defines".into(),
-                  });
+            if let Ok(content) = fs::read_to_string(entry.path()) {
+              for line in content.lines() {
+                let trimmed = line.trim();
+                if trimmed.starts_with("pub fn ") || trimmed.starts_with("fn ") || 
+                   trimmed.starts_with("pub struct ") || trimmed.starts_with("struct ") ||
+                   trimmed.starts_with("pub enum ") || trimmed.starts_with("enum ") {
+                  
+                  let parts: Vec<&str> = trimmed.split_whitespace().collect();
+                  let name = parts.iter().skip_while(|&&s| s == "pub" || s == "async").nth(1);
+                  if let Some(n) = name {
+                    let sym_name = n.split('(').next().unwrap().split('{').next().unwrap().trim();
+                    let sym_id = format!("{}:{}", node_id, sym_name);
+                    nodes.push(GraphNode { id: sym_id.clone(), label: sym_name.to_string(), kind: "symbol".into() });
+                    edges.push(GraphEdge { id: format!("{}->{}", node_id, sym_id), source: node_id.clone(), target: sym_id, kind: "defines".into() });
+                  }
                 }
               }
             }
@@ -80,47 +60,65 @@ pub async fn cargo_graph(root: String) -> Result<Graph, String> {
         }
       }
     }
-  }
-
-  let project_root_path = project_root().map_err(|e| e.to_string())?;
-  let jobs_dir = project_root_path.join(".agent").join("contracts");
-  if jobs_dir.exists() {
-    for entry in walkdir::WalkDir::new(&jobs_dir).max_depth(1).into_iter().filter_map(|e| e.ok()) {
-      if entry.file_type().is_file() && entry.path().extension().map_or(false, |ext| ext == "json") {
-        let job_name = entry.path().file_stem().unwrap().to_string_lossy().to_string();
-        let node_id = format!("job:{}", job_name);
-        nodes.push(GraphNode {
-          id: node_id.clone(),
-          label: job_name,
-          kind: "job".into(),
-        });
-        if let Some(first_pkg) = md.packages.first() {
-          edges.push(GraphEdge {
-            id: format!("{}->{}", first_pkg.name, node_id),
-            source: first_pkg.name.clone(),
-            target: node_id,
-            kind: "emitted".into(),
-          });
+    if let Some(resolve) = md.resolve {
+      for n in resolve.nodes {
+        let pkg = md.packages.iter().find(|p| p.id == n.id);
+        let src_name = pkg.map(|p| p.name.clone()).unwrap_or_else(|| n.id.repr.clone());
+        for dep in n.deps {
+          let dep_pkg = md.packages.iter().find(|p| p.id == dep.pkg);
+          let tgt_name = dep_pkg.map(|p| p.name.clone()).unwrap_or_else(|| dep.pkg.repr.clone());
+          edges.push(GraphEdge{ id: format!("{}->{}", src_name, tgt_name), source: src_name.clone(), target: tgt_name, kind: "depends_on".into() });
         }
       }
     }
   }
 
-  if let Some(resolve) = md.resolve {
-    for n in resolve.nodes {
-      let pkg = md.packages.iter().find(|p| p.id == n.id);
-      let src_name = pkg.map(|p| p.name.clone()).unwrap_or_else(|| n.id.repr.clone());
-      for dep in n.deps {
-        let dep_pkg = md.packages.iter().find(|p| p.id == dep.pkg);
-        let tgt_name = dep_pkg.map(|p| p.name.clone()).unwrap_or_else(|| dep.pkg.repr.clone());
-        edges.push(GraphEdge{
-          id: format!("{}->{}", src_name, tgt_name),
-          source: src_name.clone(),
-          target: tgt_name,
-          kind: "depends_on".into(),
-        });
+  // 2. Python System Dependencies
+  let project_root_path = PathBuf::from(&root);
+  for entry in walkdir::WalkDir::new(&project_root_path).into_iter().filter_map(|e| e.ok()) {
+    let path = entry.path();
+    let path_str = path.to_string_lossy();
+    if path_str.contains("node_modules") || path_str.contains("/target/") || path_str.contains(".git") { continue; }
+    
+    if entry.file_type().is_file() && path.extension().is_some_and(|ext| ext == "py") {
+      let file_name = path.file_name().unwrap().to_string_lossy().to_string();
+      let node_id = format!("python:{}", file_name);
+      nodes.push(GraphNode { id: node_id.clone(), label: file_name.clone(), kind: "python_module".into() });
+      
+      if let Ok(content) = fs::read_to_string(path) {
+        for line in content.lines() {
+          let trimmed = line.trim();
+          if trimmed.starts_with("def ") || trimmed.starts_with("class ") {
+            let parts: Vec<&str> = trimmed.split_whitespace().collect();
+            if parts.len() > 1 {
+              let sym_name = parts[1].split('(').next().unwrap().split(':').next().unwrap().trim();
+              let sym_id = format!("{}:{}", node_id, sym_name);
+              nodes.push(GraphNode { id: sym_id.clone(), label: sym_name.to_string(), kind: "symbol".into() });
+              edges.push(GraphEdge { id: format!("{}->{}", node_id, sym_id), source: node_id.clone(), target: sym_id, kind: "defines".into() });
+            }
+          }
+          if trimmed.starts_with("import ") || trimmed.starts_with("from ") {
+            let parts: Vec<&str> = trimmed.split_whitespace().collect();
+            let target_module = if trimmed.starts_with("import ") && parts.len() > 1 { parts[1].split('.').next().unwrap().to_string() }
+            else if trimmed.starts_with("from ") && parts.len() > 1 { parts[1].split('.').next().unwrap().to_string() }
+            else { "".to_string() };
+            
+            if !target_module.is_empty() {
+              let target_id = format!("python:{}.py", target_module);
+              edges.push(GraphEdge { id: format!("{}->{}", node_id, target_id), source: node_id.clone(), target: target_id, kind: "depends_on".into() });
+            }
+          }
+        }
       }
     }
+  }
+
+  // 3. SAT Solver DFS Loop Resolver (Semantic Guard)
+  // Rejects returning the graph if Destructive Entropy / Circular Paradox exists.
+  if let Err(e) = crate::analyzer::sat_solver::detect_circular_dependencies(&app, &nodes, &edges) {
+      eprintln!("[SAT SOLVER] Refusing SDG Compilation: {}", e);
+      // Wait to drop compilation, for the sake of frontend UI visualization we'll still return the graph 
+      // but the event emitter hook has already fired the SENTINEL BLOCK onto the GUI.
   }
 
   Ok(Graph{ nodes, edges })

@@ -62,7 +62,7 @@ fn main() {
             commands::ui::open_test_window,
             commands::ui::close_test_window,
             // Orchestrator & Graph Layer
-            commands::orchestrator::cargo_graph,
+            commands::orchestrator::generate_sdg,
             commands::orchestrator::run_job,
             commands::orchestrator::start_agent_telemetry,
             trigger_mock_sentinel_alert,

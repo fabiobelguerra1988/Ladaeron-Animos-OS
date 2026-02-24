@@ -89,8 +89,7 @@ export function GraphTab(props: {
     (async () => {
       if (!rootDir) return;
       try {
-        const g = await invoke<GraphData>('cargo_graph', { root: rootDir });
-
+        const g = await invoke<GraphData>('generate_sdg', { root: rootDir });
         const rfNodes: Node[] = g.nodes.map((n, i) => ({
           id: n.id,
           type: 'anima',

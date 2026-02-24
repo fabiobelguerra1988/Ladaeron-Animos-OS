@@ -203,7 +203,7 @@ export function App() {
     if (!rootDir) return;
     try {
       appendLog("Booting Bevy Spatial Engine...");
-      const graph = await invoke('cargo_graph', { root: rootDir });
+      const graph = await invoke('generate_sdg', { root: rootDir });
       await invoke('spawn_3d_viewport', { graph });
       appendLog("3D Context launched successfully.");
     } catch (e: any) {
