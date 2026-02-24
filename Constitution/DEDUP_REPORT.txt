@@ -1,0 +1,277 @@
+BELGUERRA MASTER LIBRARY — DEDUPLICATION REPORT
+============================================================
+
+Input:  357 files, 9,968,044 words
+Output: 265 files, 6,666,165 words
+Exact duplicates removed: 89
+Words saved: 3,191,507
+
+REMOVED DUPLICATES:
+------------------------------------------------------------
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_10.txt
+     → kept: ANIMA-OS_1v-20260224T051121Z-1-001_ANIMA-OS_1v_10_The_Architecture_of_Conscious_Civilization_part_10.txt (28,423 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_10_1_.txt
+     → kept: ANIMA-OS_1v-20260224T051121Z-1-001_ANIMA-OS_1v_10_The_Architecture_of_Conscious_Civilization_part_10.txt (28,423 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_The_Architecture_of_Conscious_Civilization_A_Systemic_Analysis_of_the_Belguerra_Constitutional_Framework_1_.txt
+     → kept: ANIMA-OS_1v-20260224T051121Z-1-001_ANIMA-OS_1v_The_Architecture_of_Conscious_Civilization_A_Systemic_Analysis_of_the_Belguerra_Constitutional_Framework.txt (9,474 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_1.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_1_The_Architecture_of_Conscious_Civilization_part_1.txt (115,569 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_1_1_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_1_The_Architecture_of_Conscious_Civilization_part_1.txt (115,569 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_1_2_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_1_The_Architecture_of_Conscious_Civilization_part_1.txt (115,569 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_1_3_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_1_The_Architecture_of_Conscious_Civilization_part_1.txt (115,569 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_2.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_2_The_Architecture_of_Conscious_Civilization_part_2.txt (124,270 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_2_1_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_2_The_Architecture_of_Conscious_Civilization_part_2.txt (124,270 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_2_2_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_2_The_Architecture_of_Conscious_Civilization_part_2.txt (124,270 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_3.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_3_The_Architecture_of_Conscious_Civilization_part_3.txt (60,157 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_3_1_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_3_The_Architecture_of_Conscious_Civilization_part_3.txt (60,157 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_3_2_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_3_The_Architecture_of_Conscious_Civilization_part_3.txt (60,157 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_4.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_4_The_Architecture_of_Conscious_Civilization_part_4.txt (87,125 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_4_1_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_4_The_Architecture_of_Conscious_Civilization_part_4.txt (87,125 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_4_2_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_4_The_Architecture_of_Conscious_Civilization_part_4.txt (87,125 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_5.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_5_The_Architecture_of_Conscious_Civilization_part_5.txt (110,558 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_5_1_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_5_The_Architecture_of_Conscious_Civilization_part_5.txt (110,558 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_5_2_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_5_The_Architecture_of_Conscious_Civilization_part_5.txt (110,558 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_6.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_6_The_Architecture_of_Conscious_Civilization_part_6.txt (107,677 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_6_1_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_6_The_Architecture_of_Conscious_Civilization_part_6.txt (107,677 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_7.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_7_The_Architecture_of_Conscious_Civilization_part_7.txt (97,226 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_7_1_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_7_The_Architecture_of_Conscious_Civilization_part_7.txt (97,226 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_8.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_8_The_Architecture_of_Conscious_Civilization_part_8.txt (110,526 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_8_1_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_8_The_Architecture_of_Conscious_Civilization_part_8.txt (110,526 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_9.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_9_The_Architecture_of_Conscious_Civilization_part_9.txt (99,429 words)
+
+  ❌ Opal-20260224T050559Z-1-001_Opal_The_Architecture_of_Conscious_Civilization_part_9_1_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_BOOK_PDF_PARTS_1_TO_10_9_The_Architecture_of_Conscious_Civilization_part_9.txt (99,429 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_UPDATE_LAWS_1.txt
+     → kept: Book-20260224T050711Z-1-001_Book_CHATGPT_IDEAS_1.txt (102,755 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_Constitution_Expansion_Not_Simplification_1_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_Constitution_Expansion_Not_Simplification_.txt (24,097 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_DOC-20250717-WA0000_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_DOC-20250717-WA0000..txt (26,164 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_Gypsy_Kings_1_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_Gypsy_Kings.txt (2,931 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_PART_1_-_1_-_250_1_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_PART_1_-_1_-_250.txt (146,572 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_TIMELINE_BOX_OFFICE_1_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_TIMELINE_BOX_OFFICE.txt (1,770 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_The_Belguerra_Constitution_The_Beautiful_War_of_Civilization_8_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_The_Belguerra_Constitution_The_Beautiful_War_of_Civilization_10_.txt (3,980 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_The_Belguerra_Constitution_The_Beautiful_War_of_Civilization_9_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_The_Belguerra_Constitution_The_Beautiful_War_of_Civilization_10_.txt (3,980 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_The_Belguerra_Constitution_The_Beautiful_War_of_Civilization_14_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_The_Belguerra_Constitution_The_Beautiful_War_of_Civilization_13_.txt (1,143 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_13_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_10_.txt (1,093 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_14_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_10_.txt (1,093 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_3_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_10_.txt (1,093 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_15_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_11_.txt (1,236 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_17_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_11_.txt (1,236 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_9_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_11_.txt (1,236 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_16_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_12_.txt (1,465 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_4_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_12_.txt (1,465 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_6_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_18_.txt (713 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_5_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_2_.txt (1,298 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_8_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_II_Law_Sovereignty_and_Recursive_Jurisprudence_2_.txt (1,298 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_15_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought.txt (1,314 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_6_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought.txt (1,314 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_8_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought.txt (1,314 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_3_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_10_.txt (853 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_13_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_11_.txt (1,032 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_18_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_11_.txt (1,032 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_5_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_11_.txt (1,032 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_14_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_12_.txt (1,011 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_19_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_12_.txt (1,011 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_1_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_12_.txt (1,011 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_7_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_12_.txt (1,011 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_2_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_16_.txt (1,054 words)
+
+  ❌ Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_9_.txt
+     → kept: Book-20260224T050711Z-1-001_Book_VOLUME_I_The_Foundations_of_Constitutional_Thought_16_.txt (1,054 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Actually_I_need_you_to_do_the_following._I_think.._.txt
+     → kept: Extraction_Actually_I_need_you_to_do_the_following._I_think.._.txt (1,625 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Anima_OS_10_25_2025.txt
+     → kept: Extraction_Anima_OS_10_25_2025.txt (30,938 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Are_you_100_sure_you_want_me_to_uncheck_the_box.._.txt
+     → kept: Extraction_Are_you_100_sure_you_want_me_to_uncheck_the_box.._.txt (175 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_BEGIN_MASTER_DOCUMENT_.txt
+     → kept: Extraction_BEGIN_MASTER_DOCUMENT_.txt (8,579 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_CAR_.txt
+     → kept: Extraction_CAR_.txt (95,982 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Free_AI_Cloud_Orchestration_Research.txt
+     → kept: Extraction_Free_AI_Cloud_Orchestration_Research.txt (4,982 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Free_LLM_IDE_Integration_Research.txt
+     → kept: Extraction_Free_LLM_IDE_Integration_Research.txt (3,229 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Game_Research_Author_Lore_Compilation.txt
+     → kept: Extraction_Game_Research_Author_Lore_Compilation.txt (2,503 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Gemini_Export_November_4_2025_at_4_53_41 PM_UTC-5.txt
+     → kept: Extraction_Gemini_Export_November_4_2025_at_4_53_41 PM_UTC-5.txt (1,171 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Hyundai.txt
+     → kept: Extraction_Hyundai.txt (1,010 words)
+
+  ❌ Extraction_I_don_t_want_to_use_electric_dreams_anymore._I_ju.._1_.txt
+     → kept: Extraction_I_don_t_want_to_use_electric_dreams_anymore._I_ju.._.txt (165 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_I_don_t_want_to_use_electric_dreams_anymore._I_ju.._.txt
+     → kept: Extraction_I_don_t_want_to_use_electric_dreams_anymore._I_ju.._.txt (165 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_I_don_t_want_to_use_electric_dreams_anymore._I_ju.._1_.txt
+     → kept: Extraction_I_don_t_want_to_use_electric_dreams_anymore._I_ju.._.txt (165 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Improvements_Based_on_the_Dreams_Model.txt
+     → kept: Extraction_Improvements_Based_on_the_Dreams_Model.txt (1,120 words)
+
+  ❌ Extraction_Intelligence_Evaluation_and_Comparison_Request_1_.txt
+     → kept: Extraction_Intelligence_Evaluation_and_Comparison_Request.txt (6,508 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Intelligence_Evaluation_and_Comparison_Request.txt
+     → kept: Extraction_Intelligence_Evaluation_and_Comparison_Request.txt (6,508 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Intelligence_Evaluation_and_Comparison_Request_1_.txt
+     → kept: Extraction_Intelligence_Evaluation_and_Comparison_Request.txt (6,508 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Just_to_notify_you_I_am_in_a_VR_template_map_but.._.txt
+     → kept: Extraction_Just_to_notify_you_I_am_in_a_VR_template_map_but.._.txt (139 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_LINUX_MODELS.txt
+     → kept: Extraction_LINUX_MODELS.txt (476 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_L_DΛEЯ_N_NIM_S.txt
+     → kept: Extraction_L_DΛEЯ_N_NIM_S.txt (6,275 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_NOCTIS_.txt
+     → kept: Extraction_NOCTIS_.txt (29,107 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Okay_so_then_there_s_something_happening_because.._.txt
+     → kept: Extraction_Okay_so_then_there_s_something_happening_because.._.txt (128 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Revolutionary_VR_OS_Design_Concepts.txt
+     → kept: Extraction_Revolutionary_VR_OS_Design_Concepts.txt (3,504 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Untitled_document.txt
+     → kept: Extraction_Untitled_document.txt (8,011 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Untitled_document_1_.txt
+     → kept: Extraction_Untitled_document_1_.txt (1,215 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_Untitled_document_2_.txt
+     → kept: Extraction_Untitled_document_2_.txt (38,645 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_VR_Security_and_UI_Research.txt
+     → kept: Extraction_VR_Security_and_UI_Research.txt (4,334 words)
+
+  ❌ drive-download-20260224T050510Z-1-001_You_said_.txt
+     → kept: Extraction_You_said_.txt (49,052 words)
+
+  ❌ Google_AI_Studio-20260224T050647Z-1-001_Google_AI_Studio_BOOK_ADVANCED_CHAT_GPT_TALK_1_.txt
+     → kept: Google_AI_Studio-20260224T050647Z-1-001_Google_AI_Studio_BOOK_ADVANCED_CHAT_GPT_TALK_.txt (33,985 words)
+

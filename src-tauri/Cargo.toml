@@ -1,0 +1,30 @@
+[package]
+name = "anima_graph_ide"
+version = "0.0.1"
+description = "ANIMA Graph IDE prototype"
+authors = ["Fabio"]
+license = "MIT"
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+anyhow = "1"
+cargo_metadata = "0.18"
+walkdir = "2"
+tokio = { version = "1", features = ["rt", "macros"] }
+notify = "8.2.0"
+bevy = "0.18.0"
+sha2 = "0.10.9"
+rand = "0.8.5"
+chrono = "0.4.44"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+lto = "fat"
+opt-level = 3

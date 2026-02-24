@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "widgets": [
+    {
+      "id": "panel-1",
+      "kind": "Panel",
+      "x": 40,
+      "y": 40,
+      "w": 420,
+      "h": 220,
+      "text": "Panel"
+    },
+    {
+      "id": "btn-1",
+      "kind": "Button",
+      "x": 80,
+      "y": 90,
+      "w": 140,
+      "h": 44,
+      "text": "Start"
+    },
+    {
+      "id": "txt-1",
+      "kind": "Text",
+      "x": 80,
+      "y": 150,
+      "w": 240,
+      "h": 32,
+      "text": "Hello ANIMA"
+    }
+  ]
+}
