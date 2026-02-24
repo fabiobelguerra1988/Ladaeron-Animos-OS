@@ -185,11 +185,32 @@ export function DashboardTab() {
 
         <article className="dashboard-card">
           <div className="dashboard-card-title">Constitutional Matrix</div>
-          <div className="dashboard-pill-row">
+          <div className="dashboard-pill-row" style={{ marginBottom: '15px' }}>
             <div className="dashboard-pill active"><span className="dashboard-pill-dot" style={{ background: '#00ffcc' }} />SAT Solver: ACTIVE</div>
             <div className="dashboard-pill active"><span className="dashboard-pill-dot" style={{ background: '#00ffcc' }} />Sentient Firewall: ENGAGED</div>
             <div className="dashboard-pill active"><span className="dashboard-pill-dot" style={{ background: '#00ffcc' }} />Memory Anchor: SECURE</div>
           </div>
+
+          <button
+            className="ide-btn"
+            style={{
+              width: '100%',
+              background: 'linear-gradient(90deg, rgba(179, 102, 255, 0.2), rgba(0, 240, 255, 0.2))',
+              borderColor: '#b366ff',
+              color: '#fff',
+              fontSize: '12px',
+              padding: '10px'
+            }}
+            onClick={async () => {
+              try {
+                await invoke('spawn_3d_viewport', { graph: { nodes: [] } });
+              } catch (e) {
+                console.error("Failed to launch 3D engine:", e);
+              }
+            }}
+          >
+            [LAUNCH HOLOGRAPHIC MAP]
+          </button>
         </article>
 
         <SwarmPanel />

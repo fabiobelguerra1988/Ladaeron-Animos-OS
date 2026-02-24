@@ -1,10 +1,22 @@
 use crate::commands::orchestrator::Graph;
 use bevy::prelude::*;
+use sysinfo::System;
 use tauri::command;
 
 #[derive(Resource)]
 struct SpatialGraphData {
     pub graph: Graph,
+}
+
+#[derive(Resource)]
+struct SysinfoMonitor {
+    sys: System,
+    timer: Timer,
+}
+
+#[derive(Component)]
+struct ProcessHologram {
+    pid: u32,
 }
 
 #[command]
@@ -21,7 +33,12 @@ pub fn spawn_3d_viewport(graph: Graph) -> Result<String, String> {
                 ..default()
             }))
             .insert_resource(SpatialGraphData { graph })
+            .insert_resource(SysinfoMonitor {
+                sys: System::new_all(),
+                timer: Timer::from_seconds(2.0, TimerMode::Repeating),
+            })
             .add_systems(Startup, setup_3d_scene)
+            .add_systems(Update, update_sysinfo_holograms)
             .run();
     });
 
@@ -85,5 +102,58 @@ fn setup_3d_scene(
             MeshMaterial3d(mat),
             Transform::from_xyz(x, y, z),
         ));
+    }
+}
+
+// System to physically render native Linux processes via Holographic Cognitive Mapping
+fn update_sysinfo_holograms(
+    time: Res<Time>,
+    mut monitor: ResMut<SysinfoMonitor>,
+    mut commands: Commands,
+    mut meshes: ResMut<Assets<Mesh>>,
+    mut materials: ResMut<Assets<StandardMaterial>>,
+    query: Query<Entity, With<ProcessHologram>>,
+) {
+    monitor.timer.tick(time.delta());
+    if monitor.timer.just_finished() {
+        monitor.sys.refresh_all();
+
+        // Remove old process holograms
+        for entity in query.iter() {
+            commands.entity(entity).despawn();
+        }
+
+        // Get Top 10 High-Memory Processes
+        let mut processes: Vec<_> = monitor.sys.processes().values().collect();
+        processes.sort_by(|a, b| b.memory().cmp(&a.memory()));
+
+        let cube = meshes.add(Cuboid::new(1.0, 1.0, 1.0));
+        let process_mat = materials.add(StandardMaterial {
+            base_color: Color::srgb(0.8, 0.0, 0.8), // Purple neon hue
+            emissive: LinearRgba::rgb(0.4, 0.0, 0.6),
+            ..default()
+        });
+
+        for (i, p) in processes.iter().take(10).enumerate() {
+            let memory_mb = p.memory() as f32 / 1024.0 / 1024.0;
+            // Scale object dramatically between 0.5x and 4x depending on RAM usage
+            let scale = (memory_mb / 200.0).clamp(0.5, 4.0);
+
+            // Hover in an arc above the abstract static logic graph
+            let angle = (i as f32 / 10.0) * std::f32::consts::TAU;
+            let radius = 15.0;
+            let x = angle.cos() * radius;
+            let z = angle.sin() * radius;
+            let y = 10.0 + (i as f32 % 3.0) * 2.0;
+
+            commands.spawn((
+                ProcessHologram {
+                    pid: p.pid().as_u32(),
+                },
+                Mesh3d(cube.clone()),
+                MeshMaterial3d(process_mat.clone()),
+                Transform::from_xyz(x, y, z).with_scale(Vec3::splat(scale)),
+            ));
+        }
     }
 }
