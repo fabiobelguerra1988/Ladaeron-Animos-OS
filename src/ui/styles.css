@@ -327,3 +327,120 @@ html, body, #root {
     width: 100%;
   }
 }
+
+/* HIQ Metrics Rings */
+.hiq-ring-row {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 15px;
+  gap: 15px;
+}
+
+.hiq-metric {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90px;
+}
+
+.hiq-ring {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 8px;
+}
+
+.hiq-ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.hiq-ring-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 3.5;
+}
+
+.hiq-ring-fill {
+  fill: none;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+.hiq-ring-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 13px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.hiq-label {
+  font-size: 10px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hiq-hero-card {
+  grid-column: span 2;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+/* Citizen Audit Protocol Logs */
+.citizen-audit-card {
+  border: 1px solid rgba(255, 77, 77, 0.2);
+  background: rgba(255, 20, 20, 0.02);
+}
+
+.audit-log-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+}
+
+.audit-entry {
+  display: flex;
+  gap: 10px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.audit-entry.success {
+  border-left: 2px solid rgba(0, 255, 204, 0.5);
+}
+
+.audit-entry.success .audit-msg {
+  color: rgba(200, 255, 240, 0.8);
+}
+
+.audit-entry.block {
+  border-left: 2px solid rgba(255, 51, 102, 0.8);
+  background: rgba(255, 51, 102, 0.05);
+}
+
+.audit-entry.block .audit-msg {
+  color: #ff80a0;
+}
+
+.audit-time {
+  color: rgba(255, 255, 255, 0.3);
+  min-width: 55px;
+}
+
+@media (max-width: 600px) {
+  .hiq-hero-card {
+    grid-column: span 1;
+  }
+}
