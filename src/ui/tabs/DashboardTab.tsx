@@ -43,29 +43,61 @@ function MetricRing({ label, value, color, delay }: { label: string; value: numb
   );
 }
 
+export interface AuditLogEntry {
+  id: string;
+  payload: SentinelAlertPayload;
+  resolved: boolean;
+}
+
 export function DashboardTab() {
   const rootDir = useAppStore((s) => s.rootDir);
   const runState = useAppStore((s) => s.runState);
 
-  const [auditLogs, setAuditLogs] = useState<SentinelAlertPayload[]>([]);
+  const [auditLogs, setAuditLogs] = useState<AuditLogEntry[]>([]);
+  const [cfmScore, setCfmScore] = useState(100.0);
+
+  // Mocking the backend Rust Analytics for the Dashboard V1
+  const hpiScore = 94.2;
+  const tsiScore = 88.7;
+  const [desScore, setDesScore] = useState(0.0); // Destructive Entropy MUST remain at 0 per Sentient Firewall
 
   useEffect(() => {
     const unlisten = listen<SentinelAlertPayload>('sentinel-alert', (event) => {
-      setAuditLogs(prev => [event.payload, ...prev].slice(0, 10)); // Keep last 10
+      const isError = event.payload.level === 'BLOCK';
+
+      const newEntry: AuditLogEntry = {
+        id: Math.random().toString(36).substring(7),
+        payload: event.payload,
+        resolved: !isError, // Success events are pre-resolved
+      };
+
+      setAuditLogs(prev => [newEntry, ...prev].slice(0, 10)); // Keep last 10
+
+      if (isError) {
+        setCfmScore(prev => Math.max(0, prev - 5.5)); // CFM Penalty for AI Action Without Consent
+        setDesScore(prev => Math.min(100, prev + 2.0)); // Temporary DES spike until resolved
+      }
     });
+
     return () => {
       unlisten.then(f => f());
     };
   }, []);
 
+  const resolveLog = (id: string) => {
+    setAuditLogs(prev => prev.map(log => {
+      if (log.id === id && !log.resolved) {
+        setCfmScore(score => Math.min(100, score + 4.8)); // CFM Reimbursed upon Human Consent Iteration
+        setDesScore(score => Math.max(0, score - 2.0)); // DES Neutralized
+        return { ...log, resolved: true };
+      }
+      return log;
+    }));
+  };
+
   const triggerTest = (type: string) => {
     invoke('trigger_mock_sentinel_alert', { failType: type }).catch(console.error);
   };
-
-  // Mocking the backend Rust Analytics for the Dashboard V1
-  const hpiScore = 94.2;
-  const tsiScore = 88.7;
-  const desScore = 0.0; // Destructive Entropy MUST remain at 0 per Sentient Firewall
 
   return (
     <div className="dashboard-shell">
@@ -86,14 +118,15 @@ export function DashboardTab() {
 
       <section className="dashboard-grid">
         <article className="dashboard-card hiq-hero-card">
-          <div className="dashboard-card-title">Metaphysical Metrics</div>
+          <div className="dashboard-card-title">Metaphysical Metrics & Consent</div>
           <div className="hiq-ring-row">
             <MetricRing label="Hope Preservation (HPI)" value={hpiScore} color="#00ffff" delay={200} />
             <MetricRing label="Truth Sync (TSI)" value={tsiScore} color="#a64dff" delay={400} />
+            <MetricRing label="Consent Flow (CFM)" value={cfmScore} color="#ffb84d" delay={500} />
             <MetricRing label="Destructive Entropy (DES)" value={desScore} color="#ff3366" delay={600} />
           </div>
           <p className="dashboard-card-copy" style={{ marginTop: '20px' }}>
-            The OS mathematically proves usefulness by generating high HPI while the Rust Sentient Firewall caps Destructive Entropy at 0.0 before a single processor cycle is wasted.
+            The OS mathematically proves usefulness by generating high HPI while the Rust Sentient Firewall caps Destructive Entropy at 0.0 before a single processor cycle is wasted. The CFM tracks continuous Recursive Consent.
           </p>
         </article>
 
@@ -110,16 +143,37 @@ export function DashboardTab() {
             {auditLogs.length === 0 ? (
               <div style={{ color: 'rgba(255,255,255,0.2)', fontStyle: 'italic', padding: '10px 0' }}>Awaiting execution validations from Rust SAT logic...</div>
             ) : (
-              auditLogs.map((log, idx) => (
-                <div key={idx} className={`audit-entry ${log.level === 'BLOCK' ? 'block' : 'success'}`}>
-                  <span className="audit-time">{log.timestamp}</span>
-                  <span className="audit-msg">{log.message}</span>
+              auditLogs.map((log) => (
+                <div key={log.id} className={`audit-entry ${log.payload.level === 'BLOCK' ? 'block' : 'success'} ${log.resolved ? 'resolved' : ''}`}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span className="audit-time">{log.payload.timestamp}</span>
+                      {log.payload.level === 'BLOCK' && (
+                        <button
+                          onClick={() => resolveLog(log.id)}
+                          disabled={log.resolved}
+                          style={{
+                            fontSize: '9px',
+                            padding: '2px 8px',
+                            background: log.resolved ? 'transparent' : '#ffb84d',
+                            color: log.resolved ? '#ffb84d' : '#000',
+                            border: `1px solid ${log.resolved ? '#ffb84d' : 'transparent'}`,
+                            borderRadius: '3px',
+                            cursor: log.resolved ? 'default' : 'pointer'
+                          }}
+                        >
+                          {log.resolved ? 'RESOLVED' : 'RESOLVE'}
+                        </button>
+                      )}
+                    </div>
+                    <span className="audit-msg" style={{ opacity: log.resolved ? 0.6 : 1 }}>{log.payload.message}</span>
+                  </div>
                 </div>
               ))
             )}
           </div>
           <div className="dashboard-subtle-line">
-            *All executions are evaluated by the native Rust SAT Solver prior to payload compilation.
+            *All executions are evaluated by the native Rust SAT Solver prior to payload compilation. Blocked items penalize the Consent Flow Metric (CFM) until human resolution.
           </div>
         </article>
 
