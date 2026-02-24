@@ -113,7 +113,59 @@ pub async fn generate_sdg(app: AppHandle, root: String) -> Result<Graph, String>
     }
   }
 
-  // 3. SAT Solver DFS Loop Resolver (Semantic Guard)
+  // 3. TypeScript/React Frontend Architecture
+  for entry in walkdir::WalkDir::new(&project_root_path).into_iter().filter_map(|e| e.ok()) {
+    let path = entry.path();
+    let path_str = path.to_string_lossy();
+    if path_str.contains("node_modules") || path_str.contains("/target/") || path_str.contains(".git") || path_str.contains(".anima_") { continue; }
+    
+    if entry.file_type().is_file() && (path.extension().is_some_and(|ext| ext == "ts" || ext == "tsx" || ext == "js" || ext == "jsx")) {
+      let file_name = path.file_name().unwrap().to_string_lossy().to_string();
+      let node_id = format!("ts:{}", file_name);
+      nodes.push(GraphNode { id: node_id.clone(), label: file_name.clone(), kind: "ts_module".into() });
+      
+      if let Ok(content) = fs::read_to_string(path) {
+        for line in content.lines() {
+          let trimmed = line.trim();
+          
+          if trimmed.starts_with("export function ") || trimmed.starts_with("export const ") || trimmed.starts_with("function ") || trimmed.starts_with("const ") {
+            let parts: Vec<&str> = trimmed.split_whitespace().collect();
+            let name_index = parts.iter().position(|&p| p == "function" || p == "const").map(|i| i + 1);
+            if let Some(i) = name_index {
+                if i < parts.len() {
+                    let sym_name = parts[i].split('(').next().unwrap().split('=').next().unwrap().trim();
+                    if !sym_name.is_empty() {
+                        let sym_id = format!("{}:{}", node_id, sym_name);
+                        nodes.push(GraphNode { id: sym_id.clone(), label: sym_name.to_string(), kind: "symbol".into() });
+                        edges.push(GraphEdge { id: format!("{}->{}", node_id, sym_id), source: node_id.clone(), target: sym_id, kind: "defines".into() });
+                    }
+                }
+            }
+          }
+
+          if trimmed.starts_with("import ") && trimmed.contains(" from ") {
+            let parts: Vec<&str> = trimmed.split(" from ").collect();
+            if parts.len() > 1 {
+                let mut target_module = parts[1].replace('\'', "").replace('"', "").replace(';', "").trim().to_string();
+                if target_module.starts_with("./") || target_module.starts_with("../") {
+                    target_module = target_module.split('/').last().unwrap_or("").to_string();
+                    if !target_module.ends_with(".ts") && !target_module.ends_with(".tsx") {
+                        target_module = format!("{}.tsx", target_module);
+                    }
+                }
+
+                if !target_module.is_empty() {
+                    let target_id = format!("ts:{}", target_module);
+                    edges.push(GraphEdge { id: format!("{}->{}", node_id, target_id), source: node_id.clone(), target: target_id, kind: "depends_on".into() });
+                }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // 4. SAT Solver DFS Loop Resolver (Semantic Guard)
   // Rejects returning the graph if Destructive Entropy / Circular Paradox exists.
   if let Err(e) = crate::analyzer::sat_solver::detect_circular_dependencies(&app, &nodes, &edges) {
       eprintln!("[SAT SOLVER] Refusing SDG Compilation: {}", e);

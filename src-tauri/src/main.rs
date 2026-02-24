@@ -61,6 +61,7 @@ fn main() {
         .invoke_handler(tauri::generate_handler![
             // JARVIS Local LLM integration
             ai::ollama::ask_jarvis_oracle,
+            ai::ollama::jarvis_audit_file,
             // Original V2 Endpoints
             // File System Layer
             commands::filesystem::get_project_root,
