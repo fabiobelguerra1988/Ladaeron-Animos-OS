@@ -5,6 +5,7 @@ mod commands;
 mod identity;
 mod ledger;
 mod metaphysics;
+mod networking;
 mod orchestrator;
 
 fn main() {
@@ -49,6 +50,13 @@ fn main() {
         .expect("Failed to commit to permanent mnemonic substrate");
 
     tauri::Builder::default()
+        .setup(|app| {
+            // Launch the Decentralized P2P Mesh Network
+            crate::networking::p2p_mesh::initialize_mesh_network(app.handle().clone());
+            // Launch the Native Linux Sovereign Process Terminator
+            crate::orchestrator::kernel_override::initialize_kernel_override(app.handle().clone());
+            Ok(())
+        })
         .invoke_handler(tauri::generate_handler![
             // File System Layer
             commands::filesystem::get_project_root,
@@ -84,6 +92,19 @@ fn trigger_mock_sentinel_alert(app: tauri::AppHandle, fail_type: String) {
             "MOCK_PAYLOAD",
             true,
         ),
+        "kernel_override" => {
+            // Physically spawn a decoupled, background Linux process that violates the Destructive Entropy constraint
+            // We use standard host tools to mock an external threat bypassing the IDE entirely
+            let _ = std::process::Command::new("cp")
+                .arg("/bin/sleep")
+                .arg("/tmp/destruct_entropy")
+                .status();
+
+            let _ = std::process::Command::new("/tmp/destruct_entropy")
+                .arg("60")
+                .spawn();
+            Ok(())
+        }
         _ => crate::orchestrator::sentient_firewall::evaluate_execution_intent(
             &app,
             "MOCK_PAYLOAD",

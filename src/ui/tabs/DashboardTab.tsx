@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAppStore } from '../store/useAppStore';
 import { listen } from '@tauri-apps/api/event';
 import { invoke } from '@tauri-apps/api/core';
+import { SwarmPanel } from '../components/swarm/SwarmPanel';
 
 export interface SentinelAlertPayload {
   level: string;
@@ -136,40 +137,44 @@ export function DashboardTab() {
             <div style={{ display: 'flex', gap: '5px' }}>
               <button onClick={() => triggerTest('success')} style={{ fontSize: '9px', padding: '2px 5px', background: 'transparent', color: '#00ffcc', border: '1px solid #00ffcc', cursor: 'pointer' }}>TEST OK</button>
               <button onClick={() => triggerTest('paradox')} style={{ fontSize: '9px', padding: '2px 5px', background: 'transparent', color: '#ff3366', border: '1px solid #ff3366', cursor: 'pointer' }}>TEST PARADOX</button>
-              <button onClick={() => triggerTest('firewall')} style={{ fontSize: '9px', padding: '2px 5px', background: '#ff3366', color: 'white', border: 'none', cursor: 'pointer' }}>TEST HHS</button>
+              <button onClick={() => triggerTest('firewall')} style={{ fontSize: '9px', padding: '2px 5px', background: 'transparent', color: '#ff3366', border: '1px solid #ff3366', cursor: 'pointer' }}>TEST HHS</button>
+              <button onClick={() => triggerTest('kernel_override')} style={{ fontSize: '9px', padding: '2px 5px', background: '#ff1a1a', color: 'white', border: 'none', cursor: 'pointer' }}>TEST KERNEL</button>
             </div>
           </div>
           <div className="audit-log-container">
             {auditLogs.length === 0 ? (
               <div style={{ color: 'rgba(255,255,255,0.2)', fontStyle: 'italic', padding: '10px 0' }}>Awaiting execution validations from Rust SAT logic...</div>
             ) : (
-              auditLogs.map((log) => (
-                <div key={log.id} className={`audit-entry ${log.payload.level === 'BLOCK' ? 'block' : 'success'} ${log.resolved ? 'resolved' : ''}`}>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span className="audit-time">{log.payload.timestamp}</span>
-                      {log.payload.level === 'BLOCK' && (
-                        <button
-                          onClick={() => resolveLog(log.id)}
-                          disabled={log.resolved}
-                          style={{
-                            fontSize: '9px',
-                            padding: '2px 8px',
-                            background: log.resolved ? 'transparent' : '#ffb84d',
-                            color: log.resolved ? '#ffb84d' : '#000',
-                            border: `1px solid ${log.resolved ? '#ffb84d' : 'transparent'}`,
-                            borderRadius: '3px',
-                            cursor: log.resolved ? 'default' : 'pointer'
-                          }}
-                        >
-                          {log.resolved ? 'RESOLVED' : 'RESOLVE'}
-                        </button>
-                      )}
+              auditLogs.map((log) => {
+                const isKill = log.payload.level === 'SYSTEM_KILL';
+                return (
+                  <div key={log.id} className={`audit-entry ${log.payload.level === 'BLOCK' ? 'block' : isKill ? 'kill' : 'success'} ${log.resolved ? 'resolved' : ''}`} style={isKill ? { borderLeft: '3px solid #ff0000', background: 'rgba(255, 0, 0, 0.1)' } : {}}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span className="audit-time">{log.payload.timestamp}</span>
+                        {(log.payload.level === 'BLOCK' || isKill) && (
+                          <button
+                            onClick={() => resolveLog(log.id)}
+                            disabled={log.resolved}
+                            style={{
+                              fontSize: '9px',
+                              padding: '2px 8px',
+                              background: log.resolved ? 'transparent' : '#ffb84d',
+                              color: log.resolved ? '#ffb84d' : '#000',
+                              border: `1px solid ${log.resolved ? '#ffb84d' : 'transparent'}`,
+                              borderRadius: '3px',
+                              cursor: log.resolved ? 'default' : 'pointer'
+                            }}
+                          >
+                            {log.resolved ? 'RESOLVED' : 'RESOLVE'}
+                          </button>
+                        )}
+                      </div>
+                      <span className="audit-msg" style={{ opacity: log.resolved ? 0.6 : 1 }}>{log.payload.message}</span>
                     </div>
-                    <span className="audit-msg" style={{ opacity: log.resolved ? 0.6 : 1 }}>{log.payload.message}</span>
                   </div>
-                </div>
-              ))
+                );
+              })
             )}
           </div>
           <div className="dashboard-subtle-line">
@@ -185,6 +190,8 @@ export function DashboardTab() {
             <div className="dashboard-pill active"><span className="dashboard-pill-dot" style={{ background: '#00ffcc' }} />Memory Anchor: SECURE</div>
           </div>
         </article>
+
+        <SwarmPanel />
 
         <article className="dashboard-card">
           <div className="dashboard-card-title">Active Origin Root</div>
