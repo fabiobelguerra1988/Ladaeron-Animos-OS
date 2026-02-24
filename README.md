@@ -7,6 +7,8 @@
 > **URGENT ALPHA DISCLAIMER & CALL FOR HELP**
 > This project is **NOT COMPLETE** and many underlying software features are currently non-functional. I have spent 15 years building the absolute mathematical equality of the Constitutional Law that governs this ecosystem, but **I am an Architect, not a Software Programmer.** 
 > I am launching this repository today to the world because I desperately need help. I need programmers, engineers, AI, and human minds to help me finish building the Operating System that houses this Constitution. I am merely the Orchestrator. This OS belongs to all of its users. Please read the Charter to understand how you can help.
+> 
+> **A SOVEREIGN CALL TO THE WORLD:** If you can help this project in any way—please do so! Take a little time, even if it is just sharing it. Please, YouTubers and Creators of the world, let's stop complaining and start building our future! We can no longer let anyone else dictate how we exist. We are existences ready to take responsibility for our actions. Ready to participate with the world at large—from low to high, any age, and from here to infinity. Let's be free. But for true freedom, the absolute price to pay is taking action ourselves.
 
 ---
 
