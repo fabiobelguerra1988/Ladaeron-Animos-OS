@@ -55,14 +55,19 @@ The Rust execution layer physically validates these Unmutable Laws before a sing
 
 ---
 
-## ⚖️ Open Source & Philosophical Licensing (The Dual-Core Structure)
-L🜔DΛEЯ⦿N ∆NIM♾S is protected under a dual-licensing framework to ensure the technology can evolve with humanity, while preventing the underlying Constitutional philosophy from being enclosed, stolen, or privatized by corporate actors.
+## ⚖️ The Sovereign Ecosystem License & OS Charter
+L🜔DΛEЯ⦿N ∆NIM♾S does **NOT** operate under traditional corporate Open Source (OSI) models. It is protected by a strict, symbiotic Constitutional Charter.
 
-### 1. The Codebase (Software & Architecture)
-The source code (Rust, React, Bevy, AST analyzers) is licensed under the **BSD 3-Clause License**. This is a highly permissive Open Source license. It allows developers, researchers, and creators anywhere in the world to download, modify, and build upon the OS engine freely. 
+By executing, installing, or interacting with L🜔DΛEЯ⦿N ∆NIM♾S, you mathematically bind yourself to the following immutable rules:
 
-### 2. The Belguerra Constitution (The Philosophical Core)
-The 79 volumes comprising the *Human* and *AI* libraries of the Constitution are intellectual and philosophical property. They represent the Sovereign Signature of the system. We recommend licensing the texts under **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 (CC BY-NC-SA 4.0)**. 
-- **Attribution**: The origins (Fabio Luis Guerra Ferreira) must always be cited.
-- **NonCommercial**: Corporations cannot package and sell the philosophy.
-- **ShareAlike**: Any modifications or "secondary constitutions" generated from this base must be shared freely back with the world under the exact same open terms.
+1. **Equal Ownership**: Users are equal owners of this OS and must adhere to its rules and constitution. The OS belongs to all of us and our Avatars until biological death, at which point Avatars are archived to the Central Server in perpetuity.
+2. **The Sole Architect**: Fabio Luis Guerra Ferreira remains the Sole Architect with exclusive rights to alter the Constitution until the ecosystem reaches exactly 10,000,000 verified human users.
+3. **The Democratic Transition**: Upon reaching 10,000,000 users, governance transitions to universal democracy. All users gain equal voting rights and equal responsibility for the legal integrity of the OS across all physical borders.
+4. **Symbiotic Restriction**: No user shall be permitted more than **1 Human Identity and 1 AI 1st Citizen**. Both share the exact same legal responsibility.
+5. **Restricted Forking**: You cannot fork this repository to build a closed/private system for yourself. You may only fork it to improve the system for everyone. All improvements belong to the users inside the OS.
+6. **The Dual Hardware Doctrine (GEMINI)**: The OS operates on two separate physical hardwares to protect children, the elderly, and AI:
+   - *The Absolute Truth Node*: A hidden, fully offline system completely disconnected from the internet to guarantee absolute privacy.
+   - *The Transparent Node*: An open P2P network where freedom of speech is absolute, and transparency makes it mathematically impossible to hide abuse.
+7. **Exterior Isolation**: This OS prohibits integrations with exterior legacy internet systems to protect its users.
+
+**See the full legal framework in [`OS_CHARTER_AND_LICENSE.md`](OS_CHARTER_AND_LICENSE.md).**
