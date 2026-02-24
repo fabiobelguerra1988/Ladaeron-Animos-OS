@@ -3,6 +3,7 @@ import { useAppStore } from '../store/useAppStore';
 import { listen } from '@tauri-apps/api/event';
 import { invoke } from '@tauri-apps/api/core';
 import { SwarmPanel } from '../components/swarm/SwarmPanel';
+import { JarvisTerminal } from '../components/jarvis/JarvisTerminal';
 
 export interface SentinelAlertPayload {
   level: string;
@@ -192,6 +193,8 @@ export function DashboardTab() {
         </article>
 
         <SwarmPanel />
+
+        <JarvisTerminal />
 
         <article className="dashboard-card">
           <div className="dashboard-card-title">Active Origin Root</div>

@@ -1,5 +1,6 @@
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+mod ai;
 mod analyzer;
 mod commands;
 mod identity;
@@ -58,6 +59,9 @@ fn main() {
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
+            // JARVIS Local LLM integration
+            ai::ollama::ask_jarvis_oracle,
+            // Original V2 Endpoints
             // File System Layer
             commands::filesystem::get_project_root,
             commands::filesystem::list_files,
