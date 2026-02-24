@@ -1,4 +1,4 @@
-# ANIMA Graph IDE: SHARED Infrastructure Index
+# L🜔DΛEЯ⦿N ∆NIM♾S: SHARED Infrastructure Index
 
 *Path of Least Resistance & Maximum Output Potential*
 

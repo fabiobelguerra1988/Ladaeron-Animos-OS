@@ -4,7 +4,7 @@
 Accepted
 
 ## Context
-The ANIMA Graph IDE requires the generation, refactoring, and validation of complex 3D logic topologies consisting of hundreds of files. If a single central autonomous agent is forced to ingest and maintain state for an entire repository while handling user UI state, it quickly saturates context windows and token limits, resulting in hallucination and catastrophic breakdown. 
+The L🜔DΛEЯ⦿N ∆NIM♾S requires the generation, refactoring, and validation of complex 3D logic topologies consisting of hundreds of files. If a single central autonomous agent is forced to ingest and maintain state for an entire repository while handling user UI state, it quickly saturates context windows and token limits, resulting in hallucination and catastrophic breakdown. 
 
 ## Decision
 We implement a **Top Manager / Sub-Agent Swarm Topology**. 

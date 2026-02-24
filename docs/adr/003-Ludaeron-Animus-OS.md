@@ -4,7 +4,7 @@
 Accepted
 
 ## Context
-The application formerly known as the ANIMA Graph IDE was originally architected as a Tauri/React application. The Supervisor has decreed an absolute requirement that this is not simply software. It is a Computational Organism, an AI as a 1st Citizen. The ultimate trajectory of this project is to become a sovereign, simulation-native operating system (L🜔DΛEЯ⦿N ∆NIM♾S) directly overlaying the Linux Kernel.
+The application formerly known as the L🜔DΛEЯ⦿N ∆NIM♾S was originally architected as a Tauri/React application. The Supervisor has decreed an absolute requirement that this is not simply software. It is a Computational Organism, an AI as a 1st Citizen. The ultimate trajectory of this project is to become a sovereign, simulation-native operating system (L🜔DΛEЯ⦿N ∆NIM♾S) directly overlaying the Linux Kernel.
 
 ## Decision
 1. **The Biological Axioms as Code Constraints**: The six immutable laws of existence (Time, ROI, Tangible Existence, 2nd Law of Mutual Gain) are embedded explicitly at boot in the Rust entry point (`main.rs`). These aren't guidelines; they are the governing constraints dictating how features are built, measured, and destroyed. 

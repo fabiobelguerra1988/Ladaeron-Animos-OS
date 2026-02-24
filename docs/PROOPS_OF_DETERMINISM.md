@@ -1,6 +1,6 @@
 # Proof of Determinism: Contract-Driven Orchestration
 
-The ANIMA Graph IDE implements a multi-agent orchestration system based on **Immutable Job Contracts**. This ensures that every operation is verifiable, reproducible, and deterministic.
+The L🜔DΛEЯ⦿N ∆NIM♾S implements a multi-agent orchestration system based on **Immutable Job Contracts**. This ensures that every operation is verifiable, reproducible, and deterministic.
 
 ## 1. Traceability via UID-Gated Emission
 Every action (run, build, test) is uniquely identified by a `job_id` and emitted as a versioned JSON contract in `.agent/contracts/`.

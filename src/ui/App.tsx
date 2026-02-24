@@ -214,7 +214,7 @@ export function App() {
   return (
     <div className="app">
       <div className="topbar">
-        <div style={{ fontWeight: 700 }}>ANIMA Graph IDE</div>
+        <div style={{ fontWeight: 700 }}>L🜔DΛEЯ⦿N ∆NIM♾S</div>
         <div className="status-badge" style={{
           background: runState === 'Running' ? '#007acc' : runState === 'Succeeded' ? '#28a745' : runState === 'Failed' ? '#dc3545' : runState === 'GovernanceRejected' ? '#ffc107' : '#444',
           color: runState === 'GovernanceRejected' ? '#000' : '#fff',
